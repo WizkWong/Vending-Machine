@@ -1,0 +1,4 @@
+Chip
+Bar
+Drink
+Fish

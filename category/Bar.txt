@@ -1,0 +1,2 @@
+Chocolate Bar;5.5;50
+Vannila Bar;4.0;50
