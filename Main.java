@@ -204,9 +204,10 @@ class Category extends topPanel{
     private class bttCategory extends button implements ActionListener {
         Storage category;
 
-        bttCategory(Storage category, int width, int height) {
+        bttCategory(Storage category, int width, int height) { // create button
             super(category.categoryName, width, height);
-            this.category = category;            // this category Object will be used to pass as parameter
+            // assign a category to the button
+            this.category = category;            // this category will be used to pass as parameter
             this.addActionListener(this);     // to add an action to this button
         }
 
@@ -290,8 +291,9 @@ class Item extends topPanel{
         Storage.ItemObj item;
         String txt;
 
-        bttItem(String txt, Storage.ItemObj item, int width, int height) {
+        bttItem(String txt, Storage.ItemObj item, int width, int height) { // create button
             super(txt, width, height);
+            // assign an item to the button
             this.item = item;
             this.txt = item.name + "\nPrice: RM" + item.price + "\nEnter the quantity:  Only accept 1-10";
             if (this.item.stock == 0) {
@@ -434,8 +436,9 @@ class Admin {
     private class bttCategory extends button implements ActionListener{
         Storage catogory;
 
-        bttCategory(Storage category, int width, int height) {
+        bttCategory(Storage category, int width, int height) { // create button
             super(category.categoryName, width, height);
+            // assign a category to the button
             this.catogory = category;
             this.addActionListener(this); // add an action to the button
         }
