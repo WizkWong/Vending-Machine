@@ -811,7 +811,7 @@ class CategoryStt implements  ActionListener {
                     allCategory += i.categoryName + "\n";
                 }
                 Main.main.createOrModifyFile("category.txt", allCategory, false);
-                JOptionPane.showMessageDialog(null, "Successfully delete" + name, "Complete", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Successfully delete " + name, "Complete", JOptionPane.PLAIN_MESSAGE);
                 Main.window.refresh(frame); // refresh the frame
                 Main.admin = new Admin();
             } else {
