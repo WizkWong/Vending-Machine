@@ -1,4 +1,3 @@
 Chip
 Bar
 Drink
-Fish

@@ -3,6 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.*;
 
 class Storage {
@@ -41,7 +42,7 @@ class Storage {
         return this.categoryName + "\n" + this.itemList + "\n";
     }
 
-    static void insertCash(label cashTxt) { // when user want to insert the money into the system
+    static void insertCash(label cashTxt) { // when user want to insert the cash into the system
         String temp;
         float tempCash;
         while (true) {
@@ -65,8 +66,8 @@ class Storage {
         }
     }
 
-    static void ejectCash(label cash_txt) { // when user want to eject the money
-        int result = JOptionPane.showConfirmDialog(null, "Eject Money: " + cash, "Confirm Eject?", JOptionPane.YES_NO_OPTION);
+    static void ejectCash(label cash_txt) { // when user want to eject the cash
+        int result = JOptionPane.showConfirmDialog(null, "Eject Cash: RM" + cash, "Confirm Eject?", JOptionPane.YES_NO_OPTION);
         if (result == 0) {
             cash = 0;    // reset cash to 0
             cash_txt.setText("Cash: RM" + cash);
@@ -81,7 +82,7 @@ class Storage {
             Main.window.refresh(frame);
             Main.category = new Category(); // back to category page
         } else {
-            JOptionPane.showMessageDialog(null, "Not Enough Money", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Not Enough Cash", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -120,12 +121,12 @@ class topPanel {
         description = new label(dcp , 200, 60, 600, 50);
         description.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        // create a button for insert money
-        insertBtt = new button("Insert Money", 750, 10, 110, 50);
+        // create a button for insert cash
+        insertBtt = new button("Insert Cash", 750, 10, 110, 50);
         insertBtt.addActionListener(e -> Storage.insertCash(cash));
 
-        // create a button for eject money
-        ejectBtt = new button("Eject Money", 870, 10, 110, 50);
+        // create a button for eject cash
+        ejectBtt = new button("Eject Cash", 870, 10, 110, 50);
         ejectBtt.addActionListener(e -> Storage.ejectCash(cash));
 
         // to show cash in top panel
@@ -328,7 +329,8 @@ class Item extends topPanel{
                                 initial = String.valueOf(item.stock);
                                 continue;
                             }
-                            total = item.price * qty; // calculate the total price and show a dialog for user to confirm
+                            DecimalFormat df = new DecimalFormat("#.00");  // set the decimal place to 2
+                            total = Float.parseFloat(df.format(item.price * qty)); // calculate the total price and show a dialog for user to confirm
                             result = JOptionPane.showConfirmDialog(null, "Total price: RM" + total + ", confirm to purchase?", "Confirm?", JOptionPane.YES_NO_CANCEL_OPTION);
                             if (result == JOptionPane.YES_OPTION) {
                                 Storage.sellItem(total, qty, item, frame, category);
