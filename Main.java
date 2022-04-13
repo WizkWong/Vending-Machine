@@ -497,7 +497,7 @@ class Admin {
                 JOptionPane.showMessageDialog(null, "Category cannot be empty!!!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 for (Storage s : Storage.categoryList) { // check any same name to prevent duplication
-                    if (newCategory.toLowerCase().equals(s.categoryName.toLowerCase())) {
+                    if (newCategory.equalsIgnoreCase(s.categoryName)) {
                         JOptionPane.showMessageDialog(null, "This category name is already exist", "Error", JOptionPane.ERROR_MESSAGE);
                         pass = false;
                         break;
@@ -775,7 +775,7 @@ class CategoryStt implements  ActionListener {
                         JOptionPane.showMessageDialog(null, "Price and Stock cannot accept negative value", "Value Error", JOptionPane.ERROR_MESSAGE);
                     } else {
                         for (Storage.ItemObj item : category.itemList) { // check any same name to prevent duplication
-                            if (name.toLowerCase().equals(item.name.toLowerCase())) {
+                            if (name.equalsIgnoreCase(item.name)) {
                                 JOptionPane.showMessageDialog(null, "This Item Name is already exist", "Error", JOptionPane.ERROR_MESSAGE);
                                 pass = false;
                                 break;
