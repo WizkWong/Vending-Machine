@@ -392,7 +392,7 @@ class Admin {
         changePss = new button("Change Password", 830, 10, 140, 50);
         changePss.addActionListener(e -> changePassword());
 
-        String dcp = "<html><p style='text-align:center;'>Please Select a Category to view the setting</p><html>";
+        String dcp = "<html><p style='text-align:center;'>Please Select a Category to view the table</p><html>";
         description = new label(dcp , 200, 60, 600, 50);
         description.setFont(new Font("Calibri", Font.BOLD, 16));
 
@@ -515,19 +515,19 @@ class Admin {
     }
 
     void changePassword() {  // to change the password
-        // create a confirm dialog with the JPasswordFiled in it
-        String newPassword;
-        JPasswordField pss = new JPasswordField(10);
-        label label1 = new label("New Password:", 100, 10);
-        label1.setHorizontalAlignment(JLabel.LEFT);
-        label label2 = new label("Minimum 4 password character", 200, 15);
-        label2.setHorizontalAlignment(JLabel.LEFT);
-        panel box = new panel(270, 50, new FlowLayout(FlowLayout.LEADING, 0, 5));
-        box.add(label1);
-        box.add(pss);
-        box.add(label2);
-        int option;
         if (accessAdmin()) { // if true then allow to change
+            // create a confirm dialog with the JPasswordFiled in it
+            String newPassword;
+            JPasswordField pss = new JPasswordField(10);
+            label label1 = new label("New Password:", 100, 10);
+            label1.setHorizontalAlignment(JLabel.LEFT);
+            label label2 = new label("Minimum 4 password character", 200, 15);
+            label2.setHorizontalAlignment(JLabel.LEFT);
+            panel box = new panel(270, 50, new FlowLayout(FlowLayout.LEADING, 0, 5));
+            box.add(label1);
+            box.add(pss);
+            box.add(label2);
+            int option;
             do {
                 option = JOptionPane.showConfirmDialog(null, box, "Change Password", JOptionPane.OK_CANCEL_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
@@ -790,7 +790,7 @@ class CategoryStt implements  ActionListener {
                             break;
                         }
                     }
-                } catch (InputMismatchException er) { // any input field with false datatype will prompt an error
+                } catch (NumberFormatException er) { // any input field with false datatype will prompt an error
                     JOptionPane.showMessageDialog(null, "Price and Stock cannot have alphabet", "Error", JOptionPane.ERROR_MESSAGE);
                     er.printStackTrace();
                 } catch (Exception er) {
@@ -841,7 +841,7 @@ class CategoryStt implements  ActionListener {
         float floatValue = 0;
         int intValue = 0;
         if (table.isEditing()) {
-            JOptionPane.showMessageDialog(null, "Please press enter to the field you just edited", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please press ENTER or ESC key to the field you just edited", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         // first check the column 1(price) and 2(stocks) have any empty string or any data is not number

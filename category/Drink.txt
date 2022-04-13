@@ -1,3 +1,4 @@
 Pepsi;3.0;50
 Coke;3.0;80
 100 Plus;2.8;55
+Fruit Juice;4.0;20
