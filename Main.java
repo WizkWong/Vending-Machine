@@ -940,14 +940,14 @@ public class Main {
             }
             if (password == null) {
                 // if the file is empty proceed to replace file and return password without interrupt the system
-                createOrModifyFile("admin.txt", "1234", false);
-                return "1234";
+                createOrModifyFile("admin.txt", "123456", false);
+                return "123456";
             }
             return password;
 
         } catch (IOException e) {
             e.printStackTrace();
-            createOrModifyFile("admin.txt", "1234", false);
+            createOrModifyFile("admin.txt", "123456", false);
         } finally {
             closeFile(br);
             closeFile(fr);
