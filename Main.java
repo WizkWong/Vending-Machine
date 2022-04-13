@@ -640,7 +640,6 @@ class CategoryStt implements  ActionListener {
         addData();
 
         tableSelection = table.getSelectionModel(); // to enable the selection feature
-//        table.putClientProperty("terminateEditOnFocusLost", true);
         table.addMouseListener(new MouseListener() {
 
             /* note that new MouseListener is an abstract class, means that force to override the method and
