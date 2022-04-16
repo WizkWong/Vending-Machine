@@ -267,7 +267,6 @@ class Item extends topPanel{
             txt = "<html><p style='text-align:center;'>" + i.name +
                     "<br/>RM" + i.price + "</p></html>";
             btt = new bttItem(txt, i, 200, 100);
-            btt.setIconTextGap(-15);
             bttItemList.add(btt);                // add the button into bttItemList
             selection.add(btt, bttConstraints);  // add the button into frame
             if (bttConstraints.gridx == 3) {
