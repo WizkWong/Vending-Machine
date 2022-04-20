@@ -836,50 +836,25 @@ class CategoryStt implements  ActionListener {
     }
 
     boolean saveItem() { // save the item that is edited
-        float floatValue = 0;
-        int intValue = 0;
         if (table.isEditing()) {
             JOptionPane.showMessageDialog(null, "Please press ENTER or ESC key to the field you just edited", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        // first check the column 1(price) and 2(stocks) have any empty string or any data is not number
-        for (int column = 1; column < tableModel.getColumnCount(); column++) {
-            for (int row = 0; row < tableModel.getRowCount(); row++) {
-                if (column == 1 || column == 2) {
-                    String data = String.valueOf(table.getValueAt(row, column));
 
-                    if (data.equals("")) {  // if empty string will change to 0
-                        tableModel.setValueAt(0, row, column);
-                    } else {
-                        try {
-                            // to check the data is a number or not
-                            if (column == 1) {
-                                floatValue = Float.parseFloat(data);
-                            } else {
-                                intValue = Integer.parseInt(data);
-                            }
-                            if (floatValue < 0 || intValue < 0) {
-                                JOptionPane.showMessageDialog(null, "Price and Stock cannot accept negative value", "Value Error", JOptionPane.ERROR_MESSAGE);
-                                return false;
-                            }
-                        } catch (Exception er) {  // if is string will prompt an error message then stop to save item
-                            JOptionPane.showMessageDialog(null, "Price and Stocks column only allow number!!!\nRemember to press enter after enter the value", "Error", JOptionPane.ERROR_MESSAGE);
-                            er.printStackTrace();
-                            return false; // save is fail
-                        }
-                    }
-                }
+        try {
+            Vector<Vector> tableData = tableModel.getDataVector();  // get the data from table
+            int n = 0;
+            // replace all the item from itemList
+            for (Vector row : tableData) {
+                category.itemList.get(n).name = (String) row.get(0);
+                category.itemList.get(n).price = Float.parseFloat(String.valueOf(row.get(1)));
+                category.itemList.get(n).stock = Integer.parseInt(String.valueOf(row.get(2)));
+                n++;
             }
-        }
-        // after the code above will start to save the data
-        Vector<Vector> tableData = tableModel.getDataVector();  // get the data from table
-        int n = 0;
-        // replace all the item from itemList
-        for (Vector row : tableData) {
-            category.itemList.get(n).name = (String) row.get(0);
-            category.itemList.get(n).price = Float.parseFloat(String.valueOf(row.get(1)));
-            category.itemList.get(n).stock = Integer.parseInt(String.valueOf(row.get(2)));
-            n++;
+        } catch (Exception er) {  // if error occur will prompt an error message then stop to save item
+            JOptionPane.showMessageDialog(null, "Price and Stocks column only allow number!!!\nRemember to press enter after enter the value", "Error", JOptionPane.ERROR_MESSAGE);
+            er.printStackTrace();
+            return false; // save is fail
         }
         Storage.itemToFile(category);
         return true;  // save is complete
