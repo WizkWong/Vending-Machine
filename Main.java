@@ -545,7 +545,7 @@ class Admin {
 
 class CategoryStt implements  ActionListener {
     private panel frame, tablePanel, toolPanel;
-    private button backBtt, deleteItemBtt, deleteCategoryBtt, addBtt, editBtt, imgBtt;
+    private button backBtt, deleteItemBtt, deleteCategoryBtt, addBtt, editBtt;
     private label title, text;
     private JTable table;
     private JTextField searchBar;
