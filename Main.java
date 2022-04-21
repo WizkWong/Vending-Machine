@@ -12,12 +12,14 @@ class Storage {
     ArrayList<ItemObj> itemList;
     private static float cash = 0;
 
-    Storage(String categoryName, ArrayList<String> itemList, ArrayList<Float> priceList, ArrayList<Integer> stockList) {
+    Storage(String categoryName, ArrayList<String> itemList) {
         this.categoryName = categoryName;
         this.itemList = new ArrayList<>();
-        for (int i = 0; i < itemList.size(); i++) {
+        String[] array;
+        for (String item : itemList) {
             // store all the item in object
-            this.itemList.add(new ItemObj(itemList.get(i), priceList.get(i), stockList.get(i)));
+            array = item.split(";");
+            this.itemList.add(new ItemObj(array[0], Float.parseFloat(array[1]), Integer.parseInt(array[2])));
         }
         categoryList.add(this);
     }
@@ -504,7 +506,7 @@ class Admin {
                 }
                 if (pass) {
                     // create new category to system and file
-                    new Storage(newCategory, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                    new Storage(newCategory, new ArrayList<>());
                     Main.main.createOrModifyFile("category.txt", newCategory + "\n", true);
                     Main.main.createOrModifyFile("category\\" + newCategory + ".txt", "", false);
                     break;
@@ -887,8 +889,6 @@ public class Main {
     public static Admin admin;
     public static CategoryStt categoryStt;
     ArrayList<String> itemList;
-    ArrayList<Float> priceList;
-    ArrayList<Integer> stockList;
 
     Main() {
         readCategory();
@@ -966,8 +966,6 @@ public class Main {
         FileReader fr = null;
         BufferedReader br = null;
         itemList = new ArrayList<>();
-        priceList = new ArrayList<>();
-        stockList = new ArrayList<>();
         try {
             File file = new File("category\\" + categoryName + ".txt");
             if (!file.exists()) {
@@ -980,10 +978,7 @@ public class Main {
             String[] array;
             while ((item = br.readLine()) != null) {
                 if (item.length() > 0) {
-                    array = item.split(";");
-                    itemList.add(array[0]);
-                    priceList.add(Float.parseFloat(array[1]));
-                    stockList.add(Integer.parseInt(array[2]));
+                    itemList.add(item);
                 }
             }
 
@@ -994,7 +989,7 @@ public class Main {
             closeFile(fr);
         }
         // create a storage class that will store in categoryList
-        new Storage(categoryName, itemList, priceList, stockList);
+        new Storage(categoryName, itemList);
     }
 
     void createOrModifyFile(String filename, String content, Boolean append) {
