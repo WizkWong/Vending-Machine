@@ -844,10 +844,10 @@ class CategoryStt implements  ActionListener {
         }
 
         try {
-            Vector<Vector> tableData = tableModel.getDataVector();  // get the data from table
+            var tableData = tableModel.getDataVector();  // get the data from table
             int n = 0;
             // replace all the item from itemList
-            for (Vector row : tableData) {
+            for (var row : tableData) {
                 category.itemList.get(n).name = (String) row.get(0);
                 category.itemList.get(n).price = Float.parseFloat(String.valueOf(row.get(1)));
                 category.itemList.get(n).stock = Integer.parseInt(String.valueOf(row.get(2)));
@@ -975,7 +975,6 @@ public class Main {
             fr = new FileReader(file);
             br = new BufferedReader(fr);
             String item;
-            String[] array;
             while ((item = br.readLine()) != null) {
                 if (item.length() > 0) {
                     itemList.add(item);
