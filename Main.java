@@ -897,7 +897,7 @@ public class Main {
 
     String readAdmin() {
         // read the admin password
-        FileReader fr = null;
+        FileReader fr;
         BufferedReader br = null;
         try {
             File file = new File("admin.txt");
@@ -925,14 +925,13 @@ public class Main {
             createOrModifyFile("admin.txt", "123456", false);
         } finally {
             closeFile(br);
-            closeFile(fr);
         }
         return readAdmin();
     }
 
     void readCategory() {
         // read the file to store all the data in the ArrayList\
-        FileReader fr = null;
+        FileReader fr;
         BufferedReader br = null;
         try {
             File file = new File("category.txt");
@@ -957,13 +956,12 @@ public class Main {
             e.printStackTrace();
         } finally {
             closeFile(br);
-            closeFile(fr);
         }
     }
 
     void readItem(String categoryName) {
         // read all the item in a category\(categoryName).txt
-        FileReader fr = null;
+        FileReader fr;
         BufferedReader br = null;
         itemList = new ArrayList<>();
         try {
@@ -985,7 +983,6 @@ public class Main {
             e.printStackTrace();
         } finally {
             closeFile(br);
-            closeFile(fr);
         }
         // create a storage class that will store in categoryList
         new Storage(categoryName, itemList);
@@ -993,7 +990,7 @@ public class Main {
 
     void createOrModifyFile(String filename, String content, Boolean append) {
         // create or replace the file
-        FileWriter fw = null;
+        FileWriter fw;
         BufferedWriter bw = null;
         try {
             fw = new FileWriter(filename, append);
@@ -1004,7 +1001,6 @@ public class Main {
             e.printStackTrace();
         } finally {
             closeFile(bw);
-            closeFile(fw);
         }
     }
 
