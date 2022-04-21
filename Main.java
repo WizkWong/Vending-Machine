@@ -78,7 +78,8 @@ class Storage {
 
     static void sellItem(float itemPrice, int qty, ItemObj item, panel frame, Storage category) {
         if (itemPrice <= Storage.cash) { // if user does have enough cash in the system will display an error message
-            cash -= itemPrice;
+            DecimalFormat df = new DecimalFormat("#.00"); // set the decimal place to 2
+            cash = Float.parseFloat(df.format(cash - itemPrice));
             item.stock -= qty;
             itemToFile(category);
             Main.window.refresh(frame);
@@ -132,7 +133,8 @@ class topPanel {
         ejectBtt.addActionListener(e -> Storage.ejectCash(cash));
 
         // to show cash in top panel
-        cash = new label("Cash: RM"+ Storage.getCash(), 870, 60, 100, 30);
+        cash = new label("Cash: RM"+ Storage.getCash(), 870, 60, 120, 30);
+        cash.setHorizontalAlignment(JLabel.LEFT);
         cash.setFont(new Font("Calibri", Font.BOLD, 16));
 
         top.add(title);
