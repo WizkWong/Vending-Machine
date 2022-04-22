@@ -869,7 +869,7 @@ class CategoryStt implements  ActionListener {
 
     void searchEngine() {
         searchText = searchBar.getText();  // get the searchbar text
-        rows = table.getRowCount();
+        int rows = table.getRowCount();
         for (int n = rows - 1; n >= 0; n--) {  // remove all the table data
             tableModel.removeRow(n);
         }
