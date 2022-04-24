@@ -15,7 +15,6 @@ public class AdminCategory implements ActionListener {
     Storage category;
     boolean edit = false;
     String searchText;
-    int rows;
 
     AdminCategory(Storage category) {
         this.category = category;

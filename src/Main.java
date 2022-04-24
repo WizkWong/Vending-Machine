@@ -9,7 +9,6 @@ public class Main {
     public static Item item;
     public static Admin admin;
     public static AdminCategory adminCategory;
-    ArrayList<String> itemList;
 
     Main() {
         readCategory();
@@ -28,7 +27,7 @@ public class Main {
             }
             fr = new FileReader(file);
             br = new BufferedReader(fr);
-            String password = null;
+            String password;
             while ((password = br.readLine()) != null) {
                 if (password.length() >= 4) { // Ignore the length of string less than 3
                     break;
@@ -84,7 +83,7 @@ public class Main {
         // read all the item in a category\(categoryName).txt
         FileReader fr;
         BufferedReader br = null;
-        itemList = new ArrayList<>();
+        ArrayList<String> itemList = new ArrayList<>();
         try {
             File file = new File("category\\" + categoryName + ".txt");
             if (!file.exists()) {
