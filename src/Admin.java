@@ -103,7 +103,7 @@ public class Admin {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == this) {
                 Main.window.refresh(frame);
-                Main.categoryStt = new CategoryStt(catogory); // go to specific category setting
+                Main.adminCategory = new AdminCategory(catogory); // go to specific category setting
             }
         }
     }

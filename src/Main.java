@@ -8,7 +8,7 @@ public class Main {
     public static Category category;
     public static Item item;
     public static Admin admin;
-    public static CategoryStt categoryStt;
+    public static AdminCategory adminCategory;
     ArrayList<String> itemList;
 
     Main() {

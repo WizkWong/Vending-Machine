@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class CategoryStt implements ActionListener {
+public class AdminCategory implements ActionListener {
     private panel frame, tablePanel, toolPanel;
     private button backBtt, deleteItemBtt, deleteCategoryBtt, addBtt, editBtt;
     private label title, text;
@@ -17,7 +17,7 @@ public class CategoryStt implements ActionListener {
     String searchText;
     int rows;
 
-    CategoryStt(Storage category) {
+    AdminCategory(Storage category) {
         this.category = category;
         // create a frame for this Category Setting page
         frame = new panel(1000, 800, null, Color.CYAN);
