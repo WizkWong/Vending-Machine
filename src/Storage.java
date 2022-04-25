@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -54,7 +53,6 @@ public class Storage {
                     JOptionPane.showMessageDialog(null, "Cash cannot accept the negative value", "Value Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     DecimalFormat df = new DecimalFormat("#.00"); // set the decimal place to 2
-                    df.setRoundingMode(RoundingMode.DOWN);
                     cash = Float.parseFloat(df.format(cash + tempCash)); // add the cash into the system
                     cashTxt.setText("Cash: RM" + cash);
                     break;
