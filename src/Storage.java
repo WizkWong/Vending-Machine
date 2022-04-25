@@ -81,6 +81,7 @@ public class Storage {
             cash = Float.parseFloat(df.format(cash - itemPrice));
             item.stock -= qty;
             itemToFile(category);
+            JOptionPane.showMessageDialog(null, "Purchase successfully. Remember to Eject Money", "Success", JOptionPane.PLAIN_MESSAGE);
             Main.window.refresh(frame);
             Main.category = new Category(); // back to category page
         } else {

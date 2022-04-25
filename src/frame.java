@@ -5,7 +5,7 @@ public class frame extends JFrame{
 
     frame(int width, int height, LayoutManager layout) {
         this.setTitle("Vending Machine App");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(width, height);
         this.setVisible(true);
         this.setLayout(layout);
