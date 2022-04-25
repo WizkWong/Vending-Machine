@@ -124,7 +124,7 @@ public class Admin {
             if (option == JOptionPane.YES_OPTION) {
                 password = new String(pss.getPassword());  // set the input to variable
 
-                if (Main.main.readAdmin().equals(password)) { // open the file, read the file and compare it, if true then access admin page
+                if (Main.readAdmin().equals(password)) { // open the file, read the file and compare it, if true then access admin page
                     return true;
                 } else {
                     // if false then show an error message
@@ -160,8 +160,8 @@ public class Admin {
                 if (pass) {
                     // create new category to system and file
                     new Storage(newCategory, new ArrayList<>());
-                    Main.main.createOrModifyFile("category.txt", newCategory + "\n", true);
-                    Main.main.createOrModifyFile("category\\" + newCategory + ".txt", "", false);
+                    Main.createOrModifyFile("category.txt", newCategory + "\n", true);
+                    Main.createOrModifyFile("category\\" + newCategory + ".txt", "", false);
                     break;
                 }
             }
@@ -187,7 +187,7 @@ public class Admin {
                 if (option == JOptionPane.YES_OPTION) {
                     newPassword = String.valueOf(pss.getPassword());
                     if (newPassword.length() >= 4) {
-                        Main.main.createOrModifyFile("admin.txt", newPassword, false);
+                        Main.createOrModifyFile("admin.txt", newPassword, false);
                         break;
                     } else {
                         JOptionPane.showMessageDialog(null, "Password must at least 4 character", "Error", JOptionPane.ERROR_MESSAGE);

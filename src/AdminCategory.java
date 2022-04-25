@@ -14,7 +14,6 @@ public class AdminCategory implements ActionListener {
     private ListSelectionModel tableSelection;
     Storage category;
     boolean edit = false;
-    String searchText;
 
     AdminCategory(Storage category) {
         this.category = category;
@@ -191,7 +190,7 @@ public class AdminCategory implements ActionListener {
     }
 
     void addData() { // add all the items from specific category into the table
-        for (Storage.ItemObj item : category.itemList) {
+        for (Storage.Item item : category.itemList) {
             tableModel.addRow(new Object[]{item.name, item.price, item.stock});
         }
     }
@@ -232,7 +231,7 @@ public class AdminCategory implements ActionListener {
                     if (price < 0 || stock < 0) {
                         JOptionPane.showMessageDialog(null, "Price and Stock cannot accept negative value", "Value Error", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        for (Storage.ItemObj item : category.itemList) { // check any same name to prevent duplication
+                        for (Storage.Item item : category.itemList) { // check any same name to prevent duplication
                             if (name.equalsIgnoreCase(item.name)) {
                                 JOptionPane.showMessageDialog(null, "This Item Name is already exist", "Error", JOptionPane.ERROR_MESSAGE);
                                 pass = false;
@@ -241,10 +240,10 @@ public class AdminCategory implements ActionListener {
                         }
                         if (pass) {
                             // create a new item that will add into category itemList
-                            category.itemList.add(new Storage.ItemObj(name, price, stock));
+                            category.itemList.add(new Storage.Item(name, price, stock));
                             tableModel.addRow(new Object[]{name, price, stock});
                             String content = name + ";" + price + ";" + stock + "\n";
-                            Main.main.createOrModifyFile("category\\" + category.categoryName + ".txt", content, true);
+                            Main.createOrModifyFile("category\\" + category.categoryName + ".txt", content, true);
                             break;
                         }
                     }
@@ -273,7 +272,7 @@ public class AdminCategory implements ActionListener {
                 for (Storage i : Storage.categoryList) {
                     allCategory += i.categoryName + "\n";
                 }
-                Main.main.createOrModifyFile("category.txt", allCategory, false);
+                Main.createOrModifyFile("category.txt", allCategory, false);
                 JOptionPane.showMessageDialog(null, "Successfully delete " + name, "Complete", JOptionPane.PLAIN_MESSAGE);
                 Main.window.refresh(frame); // refresh the frame
                 Main.admin = new Admin();
@@ -321,7 +320,7 @@ public class AdminCategory implements ActionListener {
     }
 
     void searchEngine() {
-        searchText = searchBar.getText();  // get the searchbar text
+        String searchText = searchBar.getText();  // get the searchbar text
         int rows = table.getRowCount();
         for (int n = rows - 1; n >= 0; n--) {  // remove all the table data
             tableModel.removeRow(n);
@@ -329,7 +328,7 @@ public class AdminCategory implements ActionListener {
         if (searchText.equals("")) {  // if search bar is empty string will add all data into table
             addData();
         } else {  // check any item contain search bar string will add into table
-            for (Storage.ItemObj item : category.itemList) {
+            for (Storage.Item item : category.itemList) {
                 if (item.name.toLowerCase().startsWith(searchText.toLowerCase())) {
                     tableModel.addRow(new Object[]{item.name, item.price, item.stock});
                 }

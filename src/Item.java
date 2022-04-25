@@ -44,7 +44,7 @@ public class Item extends topPanel{
         bttConstraints.insets = new Insets(10, 15, 10, 15);
 
         // create the list of button with item label in it
-        for (Storage.ItemObj i : category.itemList) {
+        for (Storage.Item i : category.itemList) {
             // note: JButton cannot have new line using String "\n"
             txt = "<html><p style='text-align:center;'>" + i.name +
                     "<br/>RM" + i.price + "</p></html>";
@@ -70,10 +70,10 @@ public class Item extends topPanel{
 
     // create a class for the item buttons
     private class bttItem extends button implements ActionListener {
-        Storage.ItemObj item;
+        Storage.Item item;
         String txt;
 
-        bttItem(String txt, Storage.ItemObj item, int width, int height) { // create button
+        bttItem(String txt, Storage.Item item, int width, int height) { // create button
             super(txt, width, height);
             // assign an item to the button
             this.item = item;

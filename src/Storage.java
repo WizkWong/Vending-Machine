@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Storage {
     static ArrayList<Storage> categoryList = new ArrayList<>();
     String categoryName;
-    ArrayList<ItemObj> itemList;
+    ArrayList<Item> itemList;
     private static float cash = 0;
 
     Storage(String categoryName, ArrayList<String> itemList) {
@@ -15,17 +15,17 @@ public class Storage {
         for (String item : itemList) {
             // store all the item in object
             array = item.split(";");
-            this.itemList.add(new ItemObj(array[0], Float.parseFloat(array[1]), Integer.parseInt(array[2])));
+            this.itemList.add(new Item(array[0], Float.parseFloat(array[1]), Integer.parseInt(array[2])));
         }
         categoryList.add(this);
     }
 
-    static class ItemObj {
+    static class Item {
         String name;
         float price;
         int stock;
 
-        ItemObj(String name, float price, int stock) {
+        Item(String name, float price, int stock) {
             this.name = name;
             this.price = price;
             this.stock = stock;
@@ -73,7 +73,7 @@ public class Storage {
         }
     }
 
-    static void sellItem(float itemPrice, int qty, ItemObj item, panel frame, Storage category) {
+    static void sellItem(float itemPrice, int qty, Item item, panel frame, Storage category) {
         if (itemPrice <= Storage.cash) { // if user does have enough cash in the system will display an error message
             DecimalFormat df = new DecimalFormat("#.00"); // set the decimal place to 2
             cash = Float.parseFloat(df.format(cash - itemPrice));
@@ -89,11 +89,11 @@ public class Storage {
 
     static void itemToFile(Storage category) {  // save the item from system to file
         String content = "";
-        for (Storage.ItemObj item : category.itemList) {
+        for (Item item : category.itemList) {
             content += item.name + ";" +  item.price + ";" + item.stock + "\n";
         }
         // to replace the content of the item file from category folder
-        Main.main.createOrModifyFile("category\\" + category.categoryName + ".txt", content, false);
+        Main.createOrModifyFile("category\\" + category.categoryName + ".txt", content, false);
     }
 
     static String getCash() {

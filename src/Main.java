@@ -3,19 +3,13 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static Main main;
     public static frame window;
     public static Category category;
     public static Item item;
     public static Admin admin;
     public static AdminCategory adminCategory;
 
-    Main() {
-        readCategory();
-        window = new frame(1000, 800, new BorderLayout());
-    }
-
-    String readAdmin() {
+    static String readAdmin() {
         // read the admin password
         FileReader fr;
         BufferedReader br = null;
@@ -49,7 +43,7 @@ public class Main {
         return readAdmin();
     }
 
-    void readCategory() {
+    static void readCategory() {
         // read the file to store all the data in the ArrayList\
         FileReader fr;
         BufferedReader br = null;
@@ -79,7 +73,7 @@ public class Main {
         }
     }
 
-    void readItem(String categoryName) {
+    static void readItem(String categoryName) {
         // read all the item in a category\(categoryName).txt
         FileReader fr;
         BufferedReader br = null;
@@ -108,7 +102,7 @@ public class Main {
         new Storage(categoryName, itemList);
     }
 
-    void createOrModifyFile(String filename, String content, Boolean append) {
+    static void createOrModifyFile(String filename, String content, Boolean append) {
         // create or replace the file
         FileWriter fw;
         BufferedWriter bw = null;
@@ -124,7 +118,7 @@ public class Main {
         }
     }
 
-    void closeFile(Closeable file) { // close the file
+    static void closeFile(Closeable file) { // close the file
         if (file != null) {
             try {
                 file.close();
@@ -135,7 +129,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        main = new Main();
+        readCategory();
+        window = new frame(1000, 800, new BorderLayout());
         category = new Category();
     }
 }
