@@ -3,6 +3,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 public class AdminCategory implements ActionListener {
     private panel frame, tablePanel, toolPanel;
@@ -302,9 +305,16 @@ public class AdminCategory implements ActionListener {
 
         try {
             var tableData = tableModel.getDataVector();  // get the data from table
-            int n = 0;
-            // replace all the item from itemList
+            List<Vector> array = new ArrayList<>();
+            // validate the table
             for (var row : tableData) {
+                Float.parseFloat(String.valueOf(row.get(1)));
+                Integer.parseInt(String.valueOf(row.get(2)));
+                array.add(row);
+            }
+            // replace all the item from itemList
+            int n = 0;
+            for (var row : array) {
                 category.itemList.get(n).name = (String) row.get(0);
                 category.itemList.get(n).price = Float.parseFloat(String.valueOf(row.get(1)));
                 category.itemList.get(n).stock = Integer.parseInt(String.valueOf(row.get(2)));
